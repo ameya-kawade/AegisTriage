@@ -1,0 +1,4 @@
+project_name=aegistriage
+token=sbp_a3f8595229b495b4339a3c6e90a819a1bf0bb3cd
+project_id=cwhfnqotxrwppwdetouj
+project_url=https://cwhfnqotxrwppwdetouj.supabase.co
