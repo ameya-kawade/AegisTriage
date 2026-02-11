@@ -5,6 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, accuracy_score
+from sklearn.model_selection import GridSearchCV
+import joblib
 
 # 1. Load Data
 df = pd.read_csv('heart_disease_uci.csv')
@@ -43,7 +45,7 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 # 6. Train Model
-model = RandomForestClassifier(n_estimators=100, random_state=42)
+model = RandomForestClassifier(n_estimators=300, random_state=42,max_depth=10,min_samples_split=10,class_weight=None)
 model.fit(X_train, y_train)
 
 # 7. Apply Custom Threshold (0.4) for Higher Recall
@@ -64,3 +66,14 @@ plt.barh(feature_df['Feature'], feature_df['Importance'], color='crimson')
 plt.title('Medical Predictors of Heart Disease (Feature Importance)')
 plt.xlabel('Importance Score')
 plt.savefig("fig.png")
+
+
+# 1. Save the best model
+joblib.dump(model, 'heart_disease_rf_model.pkl')
+
+# 2. Save the scaler (Very important! You must scale new data the exact same way)
+joblib.dump(scaler, 'heart_disease_scaler.pkl')
+
+joblib.dump(X.columns.tolist(), 'feature_names.pkl')
+
+print("Model and Scaler saved successfully!")
