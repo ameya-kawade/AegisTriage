@@ -35,3 +35,41 @@ class DiseaseAssessment(DiseaseAssessmentBase):
     timestamp: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+class LiverDiseaseInput(BaseModel):
+    Age: int
+    Gender: int
+    Total_Bilirubin: float
+    Direct_Bilirubin: float
+    Alkaline_Phosphotase: int
+    Alamine_Aminotransferase: int
+    Aspartate_Aminotransferase: int
+    Total_Protiens: float
+    Albumin: float
+    Albumin_Globulin_Ratio: float
+
+class KidneyDiseaseInput(BaseModel):
+    Age: int
+    Blood_Pressure: int
+    Specific_Gravity: float
+    Albumin: int
+    Sugar: int
+    Red_Blood_Cells: int
+    Pus_Cells: int
+    Pus_Cell_Clumps: int
+    Bacteria: int
+    Blood_Glucose_Random: int
+    Blood_Urea: int
+    Serum_Creatinine: float
+    Sodium: int
+    Potassium: float
+    Hemoglobin: float
+    Packed_Cell_Volume: int
+    White_Blood_Cell_Count: int
+    Red_Blood_Cell_Count: float
+    Hypertension: int
+    Diabetes_Mellitus: int
+    Coronary_Artery_Disease: int
+    Appetite: int
+    Pedal_Edema: int
+    Anemia: int

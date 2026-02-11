@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Heart, Activity, Droplets, Utensils, Thermometer } from 'lucide-react';
 import HeartDiseaseForm from './forms/HeartDiseaseForm';
+import LiverDiseaseForm from './forms/LiverDiseaseForm';
 
 export default function NurseDashboard() {
     const [activeTab, setActiveTab] = useState('heart');
@@ -42,6 +43,8 @@ export default function NurseDashboard() {
                 <div className="p-6">
                     {activeTab === 'heart' ? (
                         <HeartDiseaseForm />
+                    ) : activeTab === 'liver' ? (
+                        <LiverDiseaseForm />
                     ) : (
                         <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200">
                             <h3 className="text-lg font-medium text-gray-900">
