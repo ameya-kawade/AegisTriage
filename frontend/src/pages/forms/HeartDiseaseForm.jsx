@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Activity, AlertCircle, CheckCircle } from 'lucide-react';
 
-export default function HeartDiseaseForm() {
+export default function HeartDiseaseForm({ patientId }) {
     const [formData, setFormData] = useState({
         age: '',
         sex: '1',
@@ -39,6 +39,7 @@ export default function HeartDiseaseForm() {
         try {
             // Convert types as needed by the API
             const payload = {
+                patient_id: patientId,
                 age: parseInt(formData.age),
                 sex: parseInt(formData.sex),
                 chest_pain_type: parseInt(formData.chest_pain_type),

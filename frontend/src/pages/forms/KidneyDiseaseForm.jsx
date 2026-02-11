@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Activity, AlertCircle, CheckCircle } from 'lucide-react';
 
-export default function KidneyDiseaseForm() {
+export default function KidneyDiseaseForm({ patientId }) {
     const [formData, setFormData] = useState({
         Age: '',
         Blood_Pressure: '',
@@ -49,6 +49,7 @@ export default function KidneyDiseaseForm() {
 
         try {
             const payload = {
+                patient_id: patientId,
                 Age: parseInt(formData.Age),
                 Blood_Pressure: parseInt(formData.Blood_Pressure),
                 Specific_Gravity: parseFloat(formData.Specific_Gravity),
@@ -251,16 +252,16 @@ export default function KidneyDiseaseForm() {
                 <div className="md:col-span-1">
                     {result ? (
                         <div className={`rounded-xl shadow-lg border p-6 ${result.risk_category === 'HIGH' || result.risk_category === 'CRITICAL'
-                                ? 'bg-red-50 border-red-200'
-                                : result.risk_category === 'MEDIUM'
-                                    ? 'bg-amber-50 border-amber-200'
-                                    : 'bg-green-50 border-green-200'
+                            ? 'bg-red-50 border-red-200'
+                            : result.risk_category === 'MEDIUM'
+                                ? 'bg-amber-50 border-amber-200'
+                                : 'bg-green-50 border-green-200'
                             }`}>
                             <h4 className={`text-lg font-bold mb-2 ${result.risk_category === 'HIGH' || result.risk_category === 'CRITICAL'
-                                    ? 'text-red-800'
-                                    : result.risk_category === 'MEDIUM'
-                                        ? 'text-amber-800'
-                                        : 'text-green-800'
+                                ? 'text-red-800'
+                                : result.risk_category === 'MEDIUM'
+                                    ? 'text-amber-800'
+                                    : 'text-green-800'
                                 }`}>
                                 Assessment Result
                             </h4>
@@ -268,10 +269,10 @@ export default function KidneyDiseaseForm() {
                             <div className="space-y-4">
                                 <div className="text-center py-4">
                                     <div className={`text-4xl font-extrabold ${result.risk_category === 'HIGH' || result.risk_category === 'CRITICAL'
-                                            ? 'text-red-600'
-                                            : result.risk_category === 'MEDIUM'
-                                                ? 'text-amber-600'
-                                                : 'text-green-600'
+                                        ? 'text-red-600'
+                                        : result.risk_category === 'MEDIUM'
+                                            ? 'text-amber-600'
+                                            : 'text-green-600'
                                         }`}>
                                         {Math.round(result.risk_score * 100)}%
                                     </div>

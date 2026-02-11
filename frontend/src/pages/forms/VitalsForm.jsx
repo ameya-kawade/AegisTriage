@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Thermometer, Activity, Heart, Wind, Droplets } from 'lucide-react';
 
-export default function VitalsForm() {
+export default function VitalsForm({ patientId }) {
     const [formData, setFormData] = useState({
         Body_Temperature: '',
         Pulse_Rate: '',
@@ -31,6 +31,7 @@ export default function VitalsForm() {
 
         try {
             const payload = {
+                patient_id: patientId,
                 Body_Temperature: parseFloat(formData.Body_Temperature),
                 Pulse_Rate: parseInt(formData.Pulse_Rate),
                 Respiration_Rate: parseInt(formData.Respiration_Rate),
@@ -138,16 +139,16 @@ export default function VitalsForm() {
                 <div className="md:col-span-1">
                     {result ? (
                         <div className={`rounded-xl shadow-lg border p-6 ${result.risk_category === 'HIGH' || result.risk_category === 'CRITICAL'
-                                ? 'bg-red-50 border-red-200'
-                                : result.risk_category === 'MEDIUM'
-                                    ? 'bg-amber-50 border-amber-200'
-                                    : 'bg-green-50 border-green-200'
+                            ? 'bg-red-50 border-red-200'
+                            : result.risk_category === 'MEDIUM'
+                                ? 'bg-amber-50 border-amber-200'
+                                : 'bg-green-50 border-green-200'
                             }`}>
                             <h4 className={`text-lg font-bold mb-2 ${result.risk_category === 'HIGH' || result.risk_category === 'CRITICAL'
-                                    ? 'text-red-800'
-                                    : result.risk_category === 'MEDIUM'
-                                        ? 'text-amber-800'
-                                        : 'text-green-800'
+                                ? 'text-red-800'
+                                : result.risk_category === 'MEDIUM'
+                                    ? 'text-amber-800'
+                                    : 'text-green-800'
                                 }`}>
                                 Vitals Assessment
                             </h4>
@@ -155,10 +156,10 @@ export default function VitalsForm() {
                             <div className="space-y-4">
                                 <div className="text-center py-4">
                                     <div className={`text-4xl font-extrabold ${result.risk_category === 'HIGH' || result.risk_category === 'CRITICAL'
-                                            ? 'text-red-600'
-                                            : result.risk_category === 'MEDIUM'
-                                                ? 'text-amber-600'
-                                                : 'text-green-600'
+                                        ? 'text-red-600'
+                                        : result.risk_category === 'MEDIUM'
+                                            ? 'text-amber-600'
+                                            : 'text-green-600'
                                         }`}>
                                         {Math.round(result.risk_score * 100)}%
                                     </div>
